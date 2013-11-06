@@ -17,7 +17,7 @@ public class MainActivity extends Activity {
 		
 		listView = (ListView) findViewById(R.id.listView);
 		
-		String[] planets = this.getResources().getStringArray(R.array.planetsArray);
+		String[] planets = this.getResources().getStringArray(R.array.locationsArray);
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_view_row, R.id.listText, planets);
 		// ArrayAdapter takes 4 arguments - context, layout of row, to, from.

@@ -4,6 +4,6 @@
     <string name="app_name">ListView</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="planets">Planets</string>
+    <string name="locations">Locations</string>
 
 </resources>
