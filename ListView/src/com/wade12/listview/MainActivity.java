@@ -6,6 +6,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -59,9 +60,12 @@ public class MainActivity extends Activity {
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View view, int position, long arg3) {
 			
+			/*
 			TextView listText = (TextView) view.findViewById(R.id.listText);
 			String text = listText.getText().toString();
 			Toast.makeText(context, text + " clicked at position: " + position, Toast.LENGTH_SHORT).show();
+			*/
+			Toast.makeText(context, "Clicked at position: " + position, Toast.LENGTH_SHORT).show();
 			
 		} // end method onItemClick
 		
@@ -71,6 +75,7 @@ public class MainActivity extends Activity {
 	private class LocationsAdapter extends ArrayAdapter<String> {
 		
 		String[] locations;
+		ListTextClickListener listener = new ListTextClickListener();
 		
 		public LocationsAdapter(Context context, int resource, int textViewResourceId, String[] locations) {
 			
@@ -87,11 +92,15 @@ public class MainActivity extends Activity {
 			String locationName = locations[position];
 			
 			if ( position % 2 == 0 ) {
-				((TextView) viewLeft.findViewById(R.id.listText)).setText(locationName);
+				TextView listText = (TextView) viewLeft.findViewById(R.id.listText);
+				listText.setText(locationName);
+				listText.setOnClickListener(listener);
 				view = viewLeft;
 			} // end if
 			else {
-				((TextView) viewRight.findViewById(R.id.listText)).setText(locationName);
+				TextView listText = (TextView) viewRight.findViewById(R.id.listText);
+				listText.setText(locationName);
+				listText.setOnClickListener(listener);
 				view = viewRight;
 			} // end else
 			
@@ -99,5 +108,17 @@ public class MainActivity extends Activity {
 		} // end method getView
 		
 	} // end private inner Class LocationsAdapter
+	
+	
+	private class ListTextClickListener implements OnClickListener {
+
+		@Override
+		public void onClick(View view) {
+			
+			TextView clicked = (TextView) view;
+			Toast.makeText(context, clicked.getText().toString() + " location selected ", Toast.LENGTH_SHORT).show();
+		} // end method onClick
+		
+	} // end private inner ListTextClickListener
 
 } // end Class MainActivity
